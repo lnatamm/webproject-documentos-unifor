@@ -27,6 +27,27 @@
   width: 100%;
 }
 
+.datepicker-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.6em 1em;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: aliceblue;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.25s;
+  user-select: none;
+  font-family: inherit;
+}
+
+.datepicker-input:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px #646cff66;
+  outline: none;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
