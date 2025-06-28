@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: suasenha
+      MYSQL_DATABASE: boletosdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      APP_ENV: prod
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: suasenha
+      MYSQL_DB: boletosdb
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5137:80"
+    depends_on:
+      - backend
+    networks:
+      - app-net
+
+volumes:
+  mysql-data:
+
+networks:
+  app-net:
+    driver: bridge
